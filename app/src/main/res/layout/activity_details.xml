@@ -38,9 +38,10 @@
                         android:id="@+id/nameTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:labelFor="@+id/nameEditText"
                         android:layoutDirection="inherit"
-                        android:padding="7px"
-                        android:paddingTop="15px"
+                        android:padding="7dp"
+                        android:paddingTop="15dp"
                         android:text="Name"
                         android:visibility="visible" />
                 </LinearLayout>
@@ -54,11 +55,11 @@
                         android:id="@+id/phoneTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10pz"
+                        android:labelFor="@+id/phoneEditText"
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
-                        android:padding="7px"
-                        android:paddingTop="15px"
+                        android:padding="7dp"
+                        android:paddingTop="15dp"
                         android:text="Phone" />
                 </LinearLayout>
 
@@ -71,11 +72,11 @@
                         android:id="@+id/emailTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10pz"
+                        android:labelFor="@+id/emailEditText"
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
-                        android:padding="7px"
-                        android:paddingTop="15px"
+                        android:padding="7dp"
+                        android:paddingTop="15dp"
                         android:text="Email" />
                 </LinearLayout>
 
@@ -88,11 +89,11 @@
                         android:id="@+id/addressTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10pz"
+                        android:labelFor="@+id/addressEditText"
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
-                        android:padding="7px"
-                        android:paddingTop="15px"
+                        android:padding="7dp"
+                        android:paddingTop="15dp"
                         android:text="Address" />
                 </LinearLayout>
 
@@ -105,11 +106,11 @@
                         android:id="@+id/birthdayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10pz"
+                        android:labelFor="@+id/birthdayEditText"
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
-                        android:padding="7px"
-                        android:paddingTop="15px"
+                        android:padding="7dp"
+                        android:paddingTop="15 dp"
                         android:text="Birthday" />
                 </LinearLayout>
 
@@ -122,11 +123,11 @@
                         android:id="@+id/websiteTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10pz"
+                        android:labelFor="@+id/websiteEditText"
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
-                        android:padding="7px"
-                        android:paddingTop="15px"
+                        android:padding="7dp"
+                        android:paddingTop="15dp"
                         android:text="Website" />
                 </LinearLayout>
 
@@ -144,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:padding="7px" />
+                    android:padding="7dp" />
 
                 <EditText
                     android:id="@+id/addressEditText"
@@ -192,24 +193,28 @@
                     android:id="@+id/setHomeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="setHome"
                     android:text="Home" />
 
                 <Button
                     android:id="@+id/showOnMapButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="showOnMap"
                     android:text="Show" />
 
                 <Button
                     android:id="@+id/callButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="call"
                     android:text="Call" />
 
                 <Button
                     android:id="@+id/messageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="message"
                     android:text="Message" />
             </LinearLayout>
 
@@ -221,9 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginVertical="2px"
-            android:padding="5px"
-            android:paddingBottom="30px"
+            android:padding="5dp"
             android:visibility="visible">
 
         </FrameLayout>
@@ -235,6 +238,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="14dp"
+            android:elevation="0dp"
+            android:onClick="deleteFriend"
             android:text="Delete" />
 
         <Button
@@ -244,6 +249,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginStart="22dp"
+            android:onClick="saveFriend"
             android:text="Save" />
 
     </RelativeLayout>
