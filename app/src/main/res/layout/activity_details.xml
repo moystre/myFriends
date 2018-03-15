@@ -41,7 +41,6 @@
                         android:labelFor="@+id/nameEditText"
                         android:layoutDirection="inherit"
                         android:padding="7dp"
-                        android:paddingTop="15dp"
                         android:text="Name"
                         android:visibility="visible" />
                 </LinearLayout>
@@ -59,7 +58,6 @@
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
                         android:padding="7dp"
-                        android:paddingTop="15dp"
                         android:text="Phone" />
                 </LinearLayout>
 
@@ -76,7 +74,6 @@
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
                         android:padding="7dp"
-                        android:paddingTop="15dp"
                         android:text="Email" />
                 </LinearLayout>
 
@@ -93,7 +90,6 @@
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
                         android:padding="7dp"
-                        android:paddingTop="15dp"
                         android:text="Address" />
                 </LinearLayout>
 
@@ -110,7 +106,6 @@
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
                         android:padding="7dp"
-                        android:paddingTop="15 dp"
                         android:text="Birthday" />
                 </LinearLayout>
 
@@ -127,7 +122,6 @@
                         android:layoutDirection="inherit"
                         android:lineSpacingExtra="18sp"
                         android:padding="7dp"
-                        android:paddingTop="15dp"
                         android:text="Website" />
                 </LinearLayout>
 
@@ -137,6 +131,7 @@
                 android:id="@+id/detailsEditTexts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="top"
                 android:orientation="vertical">
 
                 <EditText
