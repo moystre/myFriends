@@ -2,13 +2,14 @@ package com.easv.myfriends.myfriends;
 
 import android.location.Location;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by User on 15-03-2018.
  */
 
-public class FriendModel {
+public class FriendModel implements Serializable {
 
     String mName;
     String mAddress;
@@ -18,6 +19,19 @@ public class FriendModel {
     String mWebsite;
     Date mBirthday;
     File mPicture;
+
+    public FriendModel(){};
+
+    public FriendModel(String mName, String mAddress, String mPhoneNumber, String mEmail, String mWebsite, Date mBirthday) {
+        this.mName = mName;
+        this.mAddress = mAddress;
+        this.mPhoneNumber = mPhoneNumber;
+        this.mEmail = mEmail;
+        this.mWebsite = mWebsite;
+        this.mBirthday = mBirthday;
+        // this.mLocation = mLocation;
+        // this.mPicture = mPicture;
+    }
 
     public String getmName() {
         return mName;
