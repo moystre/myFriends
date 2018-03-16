@@ -79,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="showOnMap"
+                        android:onClick="takePicture"
                         android:text="TAKE PICTURE" />
 
                 </LinearLayout>
@@ -126,7 +126,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="setHome"
+                            android:onClick="setHomeAddressLocation"
                             android:text="Home" />
 
                         <Button
@@ -134,7 +134,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="showOnMap"
+                            android:onClick="showHomeAddressLocation"
                             android:text="Show" />
 
                     </LinearLayout>
@@ -183,15 +183,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="setHome"
+                            android:onClick="call"
                             android:text="CALL" />
 
                         <Button
-                            android:id="@+id/smsButton"
+                            android:id="@+id/sendSmsButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="showOnMap"
+                            android:onClick="sendSms"
                             android:text="SMS" />
 
                     </LinearLayout>
@@ -239,7 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="showOnMap"
+                            android:onClick="sendEmail"
                             android:text="SEND EMAIL" />
 
                     </LinearLayout>
@@ -287,7 +287,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="showOnMap"
+                            android:onClick="setDate"
                             android:text="SET DATE" />
 
                     </LinearLayout>
@@ -310,7 +310,7 @@
                         android:visibility="visible" />
 
                     <EditText
-                        android:id="@+id/addressEditText"
+                        android:id="@+id/friendDetailsWebsiteEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -330,7 +330,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="setHome"
+                        android:onClick="saveProfile"
                         android:text="SAVE PROFILE" />
                 </LinearLayout>
 
