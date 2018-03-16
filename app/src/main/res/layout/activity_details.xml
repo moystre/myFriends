@@ -9,243 +9,332 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/detailsMainRow"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:gravity="top"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/detailsTextViews"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nameTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:labelFor="@+id/nameEditText"
-                        android:layoutDirection="inherit"
-                        android:padding="7dp"
-                        android:text="Name"
-                        android:visibility="visible" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/phoneTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:labelFor="@+id/phoneEditText"
-                        android:layoutDirection="inherit"
-                        android:lineSpacingExtra="18sp"
-                        android:padding="7dp"
-                        android:text="Phone" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/emailTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:labelFor="@+id/emailEditText"
-                        android:layoutDirection="inherit"
-                        android:lineSpacingExtra="18sp"
-                        android:padding="7dp"
-                        android:text="Email" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/addressTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:labelFor="@+id/addressEditText"
-                        android:layoutDirection="inherit"
-                        android:lineSpacingExtra="18sp"
-                        android:padding="7dp"
-                        android:text="Address" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/birthdayTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:labelFor="@+id/birthdayEditText"
-                        android:layoutDirection="inherit"
-                        android:lineSpacingExtra="18sp"
-                        android:padding="7dp"
-                        android:text="Birthday" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/websiteTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:labelFor="@+id/websiteEditText"
-                        android:layoutDirection="inherit"
-                        android:lineSpacingExtra="18sp"
-                        android:padding="7dp"
-                        android:text="Website" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/detailsEditTexts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/nameEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:padding="7dp" />
-
-                <EditText
-                    android:id="@+id/addressEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPostalAddress" />
-
-                <EditText
-                    android:id="@+id/phoneEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="phone" />
-
-                <EditText
-                    android:id="@+id/emailEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textEmailAddress" />
-
-                <EditText
-                    android:id="@+id/birthdayEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="date" />
-
-                <EditText
-                    android:id="@+id/websiteEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textWebEmailAddress" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/detailsButtons"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/setHomeButton"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="setHome"
-                    android:text="Home" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/showOnMapButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="showOnMap"
-                    android:text="Show" />
+                    <TextView
+                        android:id="@+id/friendDetailsNameLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:labelFor="@+id/friendDetailsNameEdit"
+                        android:layoutDirection="inherit"
+                        android:padding="7dp"
+                        android:text="@string/friendDetailsNameLabel"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/callButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="call"
-                    android:text="Call" />
+                    <EditText
+                        android:id="@+id/friendDetailsNameEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:padding="7dp" />
 
-                <Button
-                    android:id="@+id/messageButton"
-                    android:layout_width="wrap_content"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/friendDetailsPictureLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:labelFor="@+id/friendDetailsPictureEdit"
+                        android:layoutDirection="inherit"
+                        android:padding="7dp"
+                        android:text="@string/friendDetailsPictureLabel"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/friendDetailsPictureEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@mipmap/ic_launcher" />
+
+                    <Button
+                        android:id="@+id/takePictureButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="showOnMap"
+                        android:text="TAKE PICTURE" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="message"
-                    android:text="Message" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friendDetailsAddressLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@+id/friendDetailsAddressEdit"
+                            android:layoutDirection="inherit"
+                            android:padding="7dp"
+                            android:text="@string/friendDetailsAddressLabel"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/friendDetailsAddressEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPostalAddress" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/setHomeAddressLocationButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="setHome"
+                            android:text="Home" />
+
+                        <Button
+                            android:id="@+id/showHomeAddressLocationButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="showOnMap"
+                            android:text="Show" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friendDetailsPhoneLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@+id/friendDetailsPhoneEdit"
+                            android:layoutDirection="inherit"
+                            android:padding="7dp"
+                            android:text="@string/friendDetailsPhoneLabel"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/friendDetailsPhoneEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="phone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/callButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="setHome"
+                            android:text="CALL" />
+
+                        <Button
+                            android:id="@+id/smsButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="showOnMap"
+                            android:text="SMS" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friendDetailsEmailLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@+id/friendDetailsEmailEdit"
+                            android:layoutDirection="inherit"
+                            android:padding="7dp"
+                            android:text="@string/friendDetailsEmailLabel"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/friendDetailsEmailEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textEmailAddress" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/sendEmailButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="showOnMap"
+                            android:text="SEND EMAIL" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friendDetailsBirthdayLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@+id/friendDetailsBirthdayEdit"
+                            android:layoutDirection="inherit"
+                            android:padding="7dp"
+                            android:text="@string/friendDetailsBirthdayLabel"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/friendDetailsBirthdayEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="text|date" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/setDateButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="showOnMap"
+                            android:text="SET DATE" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/friendDetailsWebsiteLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:labelFor="@+id/friendDetailsWebsiteEdit"
+                        android:layoutDirection="inherit"
+                        android:padding="7dp"
+                        android:text="@string/friendDetailsWebsiteLabel"
+                        android:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/addressEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:padding="7dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/saveProfileButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="setHome"
+                        android:text="SAVE PROFILE" />
+                </LinearLayout>
+
             </LinearLayout>
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/pictureFrame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
-            android:visibility="visible">
-
-        </FrameLayout>
-
-        <Button
-            android:id="@+id/deleteFriendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="14dp"
-            android:elevation="0dp"
-            android:onClick="deleteFriend"
-            android:text="Delete" />
-
-        <Button
-            android:id="@+id/saveFriendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="22dp"
-            android:onClick="saveFriend"
-            android:text="Save" />
-
+        </ScrollView>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
