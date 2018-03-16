@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">myFriends</string>
+    <string name="friendDetailsNameLabel">Name</string>
+    <string name="friendDetailsPictureLabel">Picture</string>
+    <string name="friendDetailsAddressLabel">Address</string>
+    <string name="friendDetailsPhoneLabel">Phone</string>
+    <string name="friendDetailsEmailLabel">Email</string>
+    <string name="friendDetailsBirthdayLabel">Birthday</string>
+    <string name="friendDetailsWebsiteLabel">Website</string>
 </resources>
