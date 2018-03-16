@@ -17,7 +17,6 @@ public class Friend implements Serializable {
     String mEmail;
     String mWebsite;
     Date mBirthday;
-    // ? File mPicture;
     String mPicturePath;
 
     //    <------------------- EMPTY CONSTRUCTOR ------------------->
