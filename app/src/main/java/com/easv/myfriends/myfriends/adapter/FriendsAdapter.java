@@ -30,10 +30,12 @@ public class FriendsAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return friends.size();
-    }
-    public int AAAAAAAAA() {
-        return friends.size();
+        try {
+            int size = friends.size();
+            return size;
+        } catch(NullPointerException ex) {
+            return 0;
+        }
     }
 
     public Friend getItem(int position) {

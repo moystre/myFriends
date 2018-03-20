@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.easv.myfriends.myfriends.model.Friend;
+import com.easv.myfriends.myfriends.repository.FriendsRepository;
+
 import java.util.Date;
 
 public class DetailsActivity extends AppCompatActivity {
 
     //    <------------------- DECLARATIONS ------------------->
+    FriendsRepository friendsRepository;
 
     private EditText nameEditText; // displaying/updating friend's name
     private EditText addressEditText; // displaying/updating friend's address
@@ -44,6 +47,12 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        Friend selectedFriend;
+        Integer friendId = getIntent().getIntExtra("friendId", 0);
+        friendsRepository = new FriendsRepository();
+        //    <------------------- CREATE AND POPULATE FRIEND OBJECT  ------------------->
+        // Integer mId, String mName, String mAddress, String mPhoneNumber, String mEmail, String mWebsite, Date mBirthday, String mPicturePath, Location mLocation
+        selectedFriend = friendsRepository.getById(friendId);
 
         //    <------------------- ASSIGNING EditTexts BY findViewById  ------------------->
 
@@ -53,6 +62,15 @@ public class DetailsActivity extends AppCompatActivity {
         this.emailEditText = findViewById(R.id.friendDetailsEmailEdit);
         this.birthdayEditText = findViewById(R.id.friendDetailsBirthdayEdit);
         this.websiteEditText = findViewById(R.id.friendDetailsWebsiteEdit);
+
+        //    <------------------- ASSIGNING TextViews values  ------------------->
+
+        this.nameEditText.setText(selectedFriend.getmName());
+        this.addressEditText.setText(selectedFriend.getmAddress());
+        this.phoneEditText.setText(selectedFriend.getmPhoneNumber());
+        this.emailEditText.setText(selectedFriend.getmEmail());
+        this.birthdayEditText.setText(selectedFriend.getmBirthdayStringDAYMONTH());
+        this.websiteEditText.setText(selectedFriend.getmWebsite());
     }
 
     //    <------------------- onClick METHODS FOR BUTTONS  ------------------->

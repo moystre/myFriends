@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 
 public class Friend implements Serializable {
 
     //    <------------------- DECLARATIONS  ------------------->
+    Integer  mId;
     String mName;
     String mAddress;
     Location mLocation;
@@ -21,11 +23,21 @@ public class Friend implements Serializable {
 
     //    <------------------- EMPTY CONSTRUCTOR ------------------->
 
-    public Friend(){};
+    public Friend(){
+        this.mName = "";
+        this.mAddress = "";
+        this.mPhoneNumber = "";
+        this.mEmail = "";
+        this.mWebsite = "";
+        this.mBirthday = null;
+        this.mPicturePath = "";
+        this.mLocation = null;
+    };
 
     //    <------------------- CONSTRUCTOR ------------------->
 
-    public Friend(String mName, String mAddress, String mPhoneNumber, String mEmail, String mWebsite, Date mBirthday, String mPicturePath, Location mLocation) {
+    public Friend(Integer mId, String mName, String mAddress, String mPhoneNumber, String mEmail, String mWebsite, Date mBirthday, String mPicturePath, Location mLocation) {
+        this.mId = mId;
         this.mName = mName;
         this.mAddress = mAddress;
         this.mPhoneNumber = mPhoneNumber;
@@ -34,6 +46,12 @@ public class Friend implements Serializable {
         this.mBirthday = mBirthday;
         this.mPicturePath = mPicturePath;
         this.mLocation = mLocation;
+    }
+
+    //    <------------------- ID ------------------->
+
+    public Integer getmId() {
+        return mId;
     }
 
     //    <------------------- NAME ------------------->

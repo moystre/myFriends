@@ -14,7 +14,7 @@ public interface IFriendsRepository {
     //    <------------------- READING FUNCTIONS ------------------->
     Iterable<Friend> getAll();
     Iterable<Friend> getAlllById(Iterable<Integer> ids);
-    Optional<Friend> getById(int id);
+    Friend getById(int id);
 
     //    <------------------- UPDATING FUNCTION ------------------->
     void update(Friend entity);
@@ -24,8 +24,5 @@ public interface IFriendsRepository {
     void deleteAll();
     void deleteAllByEntites(Iterable<Friend> entities);
     void deleteById(int id);
-
-    //    <------------------- COUNTING FUNCTION ------------------->
-    long count();
 
 }
