@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +18,19 @@ import com.easv.myfriends.myfriends.model.Friend;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FriendsAdapter extends BaseAdapter {
 
     private LayoutInflater lInflater;
     private Context mContext;
-    private ArrayList<Friend> friends = new ArrayList<>();
+    private ArrayList<Friend> friends;
 
     public FriendsAdapter(Context c, ArrayList<Friend> friends) {
         mContext = c;
         this.friends = friends;
+        //test
+        lInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public int getCount() {

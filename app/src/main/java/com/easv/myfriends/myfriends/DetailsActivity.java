@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.easv.myfriends.myfriends.model.Friend;
-import com.easv.myfriends.myfriends.repository.FriendsRepository;
+import com.easv.myfriends.myfriends.DAL.repository.FriendsRepository;
 
 import java.util.Date;
 
@@ -52,7 +52,8 @@ public class DetailsActivity extends AppCompatActivity {
         friendsRepository = new FriendsRepository();
         //    <------------------- CREATE AND POPULATE FRIEND OBJECT  ------------------->
         // Integer mId, String mName, String mAddress, String mPhoneNumber, String mEmail, String mWebsite, Date mBirthday, String mPicturePath, Location mLocation
-        selectedFriend = friendsRepository.getById(friendId);
+       // TODO UNCOMMENT selectedFriend = friendsRepository.getById(friendId);
+        selectedFriend = new Friend(0,"TEST","TEST","TEST","TEST","TEST",new Date(),"TEST",new Location(""));
 
         //    <------------------- ASSIGNING EditTexts BY findViewById  ------------------->
 

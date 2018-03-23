@@ -1,4 +1,4 @@
-package com.easv.myfriends.myfriends.repository;
+package com.easv.myfriends.myfriends.DAL.repository;
 
 import com.easv.myfriends.myfriends.model.Friend;
 
