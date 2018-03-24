@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.easv.myfriends.myfriends.adapter.FriendsAdapter;
 import com.easv.myfriends.myfriends.model.Friend;
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         //endregion
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         //    <------------------- DEFINITIONS ------------------->
 
@@ -75,6 +80,16 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
+    }
 
     public boolean removeElement (final int position)
     {

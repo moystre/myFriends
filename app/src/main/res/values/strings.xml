@@ -7,4 +7,5 @@
     <string name="friendDetailsEmailLabel">Email</string>
     <string name="friendDetailsBirthdayLabel">Birthday</string>
     <string name="friendDetailsWebsiteLabel">Website</string>
+    <string name="newFriendButton">New friend</string>
 </resources>
