@@ -53,7 +53,9 @@ public class Friend implements Serializable {
     public Integer getmId() {
         return mId;
     }
-
+    public void setmId(Integer mId) {
+        this.mId = mId;
+    }
     //    <------------------- NAME ------------------->
 
     public String getmName() {

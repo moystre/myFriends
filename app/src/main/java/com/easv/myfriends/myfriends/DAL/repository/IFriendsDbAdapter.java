@@ -6,23 +6,21 @@ import java.util.Optional;
 
 //    <------------------- FRIENDS CRUD INTERFACE ------------------->
 
-public interface IFriendsRepository {
+public interface IFriendsDbAdapter {
 
     //    <------------------- CREATING FUNCTION ------------------->
-    Friend insert(Friend entity);
+    long insert(Friend entity);
 
     //    <------------------- READING FUNCTIONS ------------------->
     Iterable<Friend> getAll();
-    Iterable<Friend> getAlllById(Iterable<Integer> ids);
+    Iterable<Friend> getAlllByIds(Iterable<Integer> ids);
     Friend getById(int id);
 
     //    <------------------- UPDATING FUNCTION ------------------->
-    void update(Friend entity);
+    Boolean update(Friend entity);
 
     //    <------------------- DELETING FUNCTIONS ------------------->
-    void delete(Friend entity);
-    void deleteAll();
-    void deleteAllByEntites(Iterable<Friend> entities);
-    void deleteById(int id);
+    Boolean delete(int id);
+    Boolean deleteAll();
 
 }
