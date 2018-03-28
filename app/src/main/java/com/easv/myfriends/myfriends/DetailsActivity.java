@@ -7,14 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.easv.myfriends.myfriends.model.Friend;
-import com.easv.myfriends.myfriends.DAL.repository.FriendsRepository;
+import com.easv.myfriends.myfriends.service.FriendsService;
 
 import java.util.Date;
 
 public class DetailsActivity extends AppCompatActivity {
 
     //    <------------------- DECLARATIONS ------------------->
-    FriendsRepository friendsRepository;
+    FriendsService friendsService;
+    Friend selectedFriend;
+    Integer selectedFriendId;
+    Boolean isNewFriend;
 
     private EditText nameEditText; // displaying/updating friend's name
     private EditText addressEditText; // displaying/updating friend's address
@@ -47,15 +50,21 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        Friend selectedFriend;
-        Integer friendId = getIntent().getIntExtra("friendId", 0);
-        friendsRepository = new FriendsRepository();
-        //    <------------------- CREATE AND POPULATE FRIEND OBJECT  ------------------->
-        // Integer mId, String mName, String mAddress, String mPhoneNumber, String mEmail, String mWebsite, Date mBirthday, String mPicturePath, Location mLocation
-       // TODO UNCOMMENT selectedFriend = friendsRepository.getById(friendId);
-        selectedFriend = new Friend(0,"TEST","TEST","TEST","TEST","TEST",new Date(),"TEST",new Location(""));
+        friendsService = new FriendsService(this);
 
-        //    <------------------- ASSIGNING EditTexts BY findViewById  ------------------->
+        //    <------------------- RETREIVING EXTRAS  ------------------->
+        selectedFriendId = getIntent().getIntExtra("friendId", 0);
+        isNewFriend = getIntent().getBooleanExtra("isNewFriend", false);
+
+        //    <------------------- CREATE AND POPULATE FRIEND OBJECT  ------------------->
+        if(!isNewFriend) {
+             selectedFriend = friendsService.get(selectedFriendId);
+        }
+        else {
+            selectedFriend = new Friend();
+        }
+
+        //    <------------------- FINDING EditTexts BY findViewById  ------------------->
 
         this.nameEditText = findViewById(R.id.friendDetailsNameEdit);
         this.addressEditText = findViewById(R.id.friendDetailsAddressEdit);
@@ -72,8 +81,8 @@ public class DetailsActivity extends AppCompatActivity {
         this.emailEditText.setText(selectedFriend.getmEmail());
         this.birthdayEditText.setText(selectedFriend.getmBirthdayStringDAYMONTH());
         this.websiteEditText.setText(selectedFriend.getmWebsite());
-    }
 
+    }
     //    <------------------- onClick METHODS FOR BUTTONS  ------------------->
 
     // taking a new picture/updating previous one
@@ -98,7 +107,30 @@ public class DetailsActivity extends AppCompatActivity {
     public void setDate(View v) {}
 
     // saving/updating friend's profile
-    public void saveProfile(View v) {}
+    public void saveProfile(View v) {
+        if(!isNewFriend) {
+            selectedFriend.setmName(nameEditText.getText().toString().trim());
+            selectedFriend.setmAddress(addressEditText.getText().toString().trim());
+            //todo set location
+            selectedFriend.setmPhoneNumber(phoneEditText.getText().toString().trim());
+            selectedFriend.setmEmail(emailEditText.getText().toString().trim());
+            //todo set birthday
+            selectedFriend.setmWebsite(websiteEditText.getText().toString().trim());
+            //todo set picture path
+            friendsService.update(selectedFriend);
+        }
+        else {
+            selectedFriend.setmName(nameEditText.getText().toString().trim());
+            selectedFriend.setmAddress(addressEditText.getText().toString().trim());
+            //todo set location
+            selectedFriend.setmPhoneNumber(phoneEditText.getText().toString().trim());
+            selectedFriend.setmEmail(emailEditText.getText().toString().trim());
+            //todo set birthday
+            selectedFriend.setmWebsite(websiteEditText.getText().toString().trim());
+            //todo set picture path
+            friendsService.addFriend(selectedFriend);
+        }
+    }
 
     //    <------------------- CRUD FUNCTIONALITY FOR Friend's profile ------------------->
 

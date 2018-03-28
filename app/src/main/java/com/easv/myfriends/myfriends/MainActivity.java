@@ -10,13 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.easv.myfriends.myfriends.adapter.FriendsAdapter;
 import com.easv.myfriends.myfriends.model.Friend;
-import com.easv.myfriends.myfriends.DAL.repository.FriendsRepository;
+import com.easv.myfriends.myfriends.service.FriendsService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +25,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     //    <------------------- DECLARATIONS ------------------->
     ArrayList<Friend> friendsList;
-    FriendsRepository friendsRepository;
+    FriendsService friendsService;
     FriendsAdapter adapter;
     ListView listView;
 
@@ -32,11 +33,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //region MOCKING DATA
         friendsList = new ArrayList<Friend>();
-        friendsList.add(new Friend(0,"TEST","TEST","TEST","TEST","TEST",new Date(),"TEST",new Location("")));
-        friendsList.add(new Friend(0,"TEST","TEST","TEST","TEST","TEST",new Date(),"TEST",new Location("")));
-        //endregion
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -44,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         //    <------------------- DEFINITIONS ------------------->
 
-        friendsRepository = new FriendsRepository();
+        friendsService = new FriendsService(this);
         //TODO SEPERATE THREAD FOR LOADING STUFF FROM DB
-        // assignDataBaseDataToFriendsList();
+         assignDataBaseDataToFriendsList();
         adapter = new FriendsAdapter(this, friendsList);
         listView = (ListView) findViewById(R.id.friendsListView);
 
@@ -88,7 +86,37 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return true;
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+
+
+        if (id == R.id.action_new_friend) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Add new friend?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int which) {
+                    Intent i = new Intent(getApplicationContext(), DetailsActivity.class);
+                    // detailsActivity will check for extra new value and if it exist it means that it should load blank object instead of loading actual friendFromDb
+                    i.putExtra("isNewFriend", true);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public boolean removeElement (final int position)
@@ -99,7 +127,7 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 //TODO TEST \/
-                friendsRepository.deleteById(friendsList.get(position).getmId());
+                friendsService.delete(friendsList.get(position).getmId());
                 assignDataBaseDataToFriendsList();
                 adapter.notifyDataSetChanged();
             }
@@ -116,6 +144,6 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
 
     public void assignDataBaseDataToFriendsList()
     {
-        friendsList = (ArrayList<Friend>) friendsRepository.getAll();
+        friendsList = (ArrayList<Friend>) friendsService.getAll();
     }
 }

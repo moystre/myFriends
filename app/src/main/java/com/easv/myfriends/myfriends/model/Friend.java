@@ -116,9 +116,14 @@ public class Friend implements Serializable {
         return mBirthday;
     }
     public String getmBirthdayStringDAYMONTH() {
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM");
-        String strDt = simpleDate.format(getmBirthday());
-        return strDt;
+        if(getmBirthday()!=null) {
+            SimpleDateFormat simpleDate = new SimpleDateFormat("dd/MM");
+            String strDt = simpleDate.format(getmBirthday());
+            return strDt;
+        }
+        else {
+            return "";
+        }
     }
     public void setmBirthday(Date mBirthday) {
         this.mBirthday = mBirthday;

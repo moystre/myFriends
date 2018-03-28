@@ -1,9 +1,10 @@
 package com.easv.myfriends.myfriends.service;
 
+import android.content.ContentValues;
 import android.content.Context;
 
-import com.easv.myfriends.myfriends.DAL.repository.FriendsRepository;
-import com.easv.myfriends.myfriends.DAL.repository.IFriendsRepository;
+import com.easv.myfriends.myfriends.DAL.repository.FriendsDbAdapter;
+import com.easv.myfriends.myfriends.DAL.repository.IFriendsDbAdapter;
 import com.easv.myfriends.myfriends.model.Friend;
 
 /**
@@ -12,51 +13,61 @@ import com.easv.myfriends.myfriends.model.Friend;
 
 public class FriendsService {
     // TODO toast service with resultString
-    private IFriendsRepository repo;
+    private IFriendsDbAdapter dbAdapter;
+    private MessageService messageService;
+    private Context context;
 
     public FriendsService(Context context)
     {
-        repo = new FriendsRepository(context);
+        dbAdapter = new FriendsDbAdapter(context);
+        this.context = context;
+        messageService = new MessageService();
     }
 
     //    <------------------- CREATING FUNCTION ------------------->
-    void addFriend(Friend friend)
+    public void addFriend(Friend friend)
     {
-       repo.insert(friend);
+        if(dbAdapter.insert(friend)>=0)
+        {
+            messageService.message(context, "Friend Added!");
+        }else{
+            messageService.message(context, "Adding Error.");
+        }
+
     }
 
     //    <------------------- READING FUNCTIONS ------------------->
-    Iterable<Friend> getAll()
+    public Iterable<Friend> getAll()
     {
-       return repo.getAll();
+       return dbAdapter.getAll();
     }
-    Iterable<Friend> getAlllById(Iterable<Integer> ids)
+    public Iterable<Friend> getAlllById(Iterable<Integer> ids)
     {
-        return repo.getAlllByIds(ids);
+        return dbAdapter.getAlllByIds(ids);
     }
-    Friend getById(int id)
+    public Friend get(int id)
     {
-        return repo.getById(id);
+        return dbAdapter.getById(id);
     }
 
     //    <------------------- UPDATING FUNCTION ------------------->
-    void update(Friend friend)
+    public void update(Friend friend)
     {
-        repo.update(friend);
+        if(dbAdapter.update(friend))
+        {
+            messageService.message(context, "Friend Updated!");
+        }else{
+            messageService.message(context, "Update Error.");
+        }
     }
 
     //    <------------------- DELETING FUNCTIONS ------------------->
-    void delete(Friend friend)
+    public void delete(int id)
     {
-        repo.delete(friend);
+        dbAdapter.delete(id);
     }
-    void deleteAll()
+    public void deleteAll()
     {
-        repo.deleteAll();
-    }
-
-    void deleteById(int id)
-    {
-        repo.deleteById(id);
+        dbAdapter.deleteAll();
     }
 }
