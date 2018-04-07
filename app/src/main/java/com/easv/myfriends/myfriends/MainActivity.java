@@ -162,8 +162,8 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
             }
         });
     }
