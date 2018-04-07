@@ -6,4 +6,9 @@
         android:title="@string/newFriendButton"
         app:showAsAction="always">
 </item>
+    <item
+        android:id="@+id/goto_map"
+        android:title="@string/map_button"
+        app:showAsAction="always">
+    </item>
 </menu>

@@ -1,15 +1,18 @@
 package com.easv.myfriends.myfriends;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,6 +21,8 @@ import android.support.v7.widget.Toolbar;
 import com.easv.myfriends.myfriends.adapter.FriendsAdapter;
 import com.easv.myfriends.myfriends.model.Friend;
 import com.easv.myfriends.myfriends.service.FriendsService;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     FriendsService friendsService;
     FriendsAdapter adapter;
     ListView listView;
+
+    // variables for isServicesOk()
+    private static final String TAG = "MainActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     //filtering and sorting -> adapter
     @Override
@@ -146,4 +155,39 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
     {
         friendsList = (ArrayList<Friend>) friendsService.getAll();
     }
+
+    // initializing button from moving to MapActivity if isServicesOk() returns true
+    private void initMapButton(){
+        Button btnMap = (Button) findViewById(R.id.goto_map);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                //startActivity(intent);
+            }
+        });
+    }
+
+    // Method for checking availability of GooglePlayServices
+    public boolean isServicesOk(){
+        Log.d(TAG, "isServicesOK: checking google services version");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
+
+        if(available == ConnectionResult.SUCCESS){
+            //everything is fine and the user can make map requests
+            Log.d(TAG, "isServicesOK: Google Play Services is working");
+            return true;
+        }
+        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            //an error occured but we can resolve it
+            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else{
+            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
 }

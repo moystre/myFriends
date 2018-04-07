@@ -8,4 +8,6 @@
     <string name="friendDetailsBirthdayLabel">Birthday</string>
     <string name="friendDetailsWebsiteLabel">Website</string>
     <string name="newFriendButton">New friend</string>
+    <string name="GoogleMaps_API_Key">AIzaSyAb8ymnj7VKplrla4o0V2i_i2xOjocDRAE</string>
+    <string name="map_button">Map View</string>
 </resources>
