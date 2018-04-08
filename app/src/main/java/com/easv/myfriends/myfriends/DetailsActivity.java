@@ -121,7 +121,7 @@ public class DetailsActivity extends AppCompatActivity {
     // calling a friend's number with built-in application
     public void call(View v){
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:0123456789"));
+        intent.setData(Uri.parse("tel:"+selectedFriend.getmPhoneNumber()));
         startActivity(intent);
     }
 
