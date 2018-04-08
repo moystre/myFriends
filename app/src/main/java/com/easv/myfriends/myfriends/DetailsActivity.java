@@ -126,7 +126,13 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     // sending an sms with built-in application
-    public void sendSms(View v) {}
+    public void sendSms(View v) {
+        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+        smsIntent.setType("vnd.android-dir/mms-sms");
+        smsIntent.putExtra("address", selectedFriend.getmPhoneNumber());
+        smsIntent.putExtra("sms_body","");
+        startActivity(smsIntent);
+    }
 
     // sending an email with default mailbox application
     public void sendEmail(View v) {}
