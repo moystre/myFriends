@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     FriendsAdapter adapter;
     ListView listView;
 
-    // variables for isServicesOk()
-    private static final String TAG = "MainActivity";
+    // variables for isGooglePlayServicesOk()
+    private static final String TAG = "MainActivity";     //Activity's TAG used for Log
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
     //filtering and sorting -> adapter
@@ -85,6 +85,10 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
             startActivity(i);
         }
         });
+
+        if(isGooglePlayServicesOk()){
+            Log.d(TAG, "GooglePlayServices is OK");
+        }
     }
 
     @Override
@@ -96,7 +100,7 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up button, as long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -124,6 +128,10 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
             });
             builder.show();
             return true;
+        }
+        if (id == R.id.action_goto_map){
+            Intent intent = new Intent(MainActivity.this, MapActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -156,36 +164,23 @@ public void onItemClick(AdapterView parent, View view, final int position, long 
         friendsList = (ArrayList<Friend>) friendsService.getAll();
     }
 
-    // initializing button from moving to MapActivity if isServicesOk() returns true
-    private void initMapButton(){
-        Button btnMap = (Button) findViewById(R.id.goto_map);
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     // Method for checking availability of GooglePlayServices
-    public boolean isServicesOk(){
-        Log.d(TAG, "isServicesOK: checking google services version");
-
+    public boolean isGooglePlayServicesOk(){
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
-
         if(available == ConnectionResult.SUCCESS){
-            //everything is fine and the user can make map requests
-            Log.d(TAG, "isServicesOK: Google Play Services is working");
+            //GooglePlayServices are available
+            Log.d(TAG, "GooglePlayServicesOk");
             return true;
         }
         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
-            //an error occured but we can resolve it
-            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+            //Error occured
+            Log.d(TAG, "GooglePlayServices: Error occured");
             Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
-        }else{
-            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
+        }
+        //GooglePlayServices aren't available
+        else {
+            Toast.makeText(this, "GooglePlayServices: Can't make map requests", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
