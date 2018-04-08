@@ -120,9 +120,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     // calling a friend's number with built-in application
     public void call(View v){
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:"+selectedFriend.getmPhoneNumber()));
-        startActivity(intent);
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:"+selectedFriend.getmPhoneNumber()));
+        startActivity(callIntent);
     }
 
     // sending an sms with built-in application
@@ -135,7 +135,12 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     // sending an email with default mailbox application
-    public void sendEmail(View v) {}
+    public void sendEmail(View v) {
+        Uri uri = Uri.parse("mailto:"+selectedFriend.getmEmail());
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,"");
+        startActivity(emailIntent);
+    }
 
     // setting date of friend's birthday
     public void setDate(View v) {}
