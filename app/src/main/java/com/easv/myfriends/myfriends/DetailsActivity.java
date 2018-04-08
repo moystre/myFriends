@@ -8,6 +8,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -98,8 +100,8 @@ public class DetailsActivity extends AppCompatActivity {
         this.phoneEditText.setText(selectedFriend.getmPhoneNumber());
         this.emailEditText.setText(selectedFriend.getmEmail());
         this.birthdayEditText.setText(selectedFriend.getmBirthdayStringDAYMONTH());
-        this.websiteEditText.setText(selectedFriend.getmWebsite());
-
+        this.websiteEditText.setText(Html.fromHtml(selectedFriend.getmWebsite()));
+        this.websiteEditText.setMovementMethod(LinkMovementMethod.getInstance());
     }
     //    <------------------- onClick METHODS FOR BUTTONS  ------------------->
 

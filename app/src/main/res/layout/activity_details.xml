@@ -316,7 +316,9 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:padding="7dp" />
+                        android:padding="7dp"
+                        android:linksClickable="true"
+                        android:autoLink="web|email"/>
 
                 </LinearLayout>
 
