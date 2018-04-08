@@ -2,8 +2,13 @@ package com.easv.myfriends.myfriends;
 
 import android.*;
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,24 +28,28 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Calendar;
+
 /**
  * Created by User on 07-04-2018.
  */
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    //Activity's TAG used for Log
-    private static final String TAG = "MapActivity";
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback // LocationListener
+{
+    private static final String TAG = "MapActivity";     //Activity's TAG used for Log
     //Strings for checking permissions created out of Manifest permissions
-    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     //Default zoom used for actual location
     private static final float DEFAULT_ZOOM = 12f;
 
     private Boolean mLocationPermissionsGranted = false; //Initial permission grant state for accessing device's location
     private GoogleMap mMap; //Instance of GoogleMap
-    private FusedLocationProviderClient mFusedLocationProviderClient; //
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+
+    //private static Location intentLocation; //Location used to pass in extra for DetailsActivity
+    //LocationManager mLocationManager;
 
     //Accessing GoogleMap by implementing OnMapReadyCallback interface
     @Override
@@ -49,7 +58,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
         //Checking permissions (Manifest)
         if (mLocationPermissionsGranted) {
-            //Permission has been granted; getting device's location
+            //Permission has been granted
             getDeviceLocation();
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
@@ -60,7 +69,30 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
         }
+
+        /*mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
+            Log.d(TAG, "Creating intent for Details Activity.............");
+            createIntentForDetailsActivity(location);
+        }
+        else {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        }*/
     }
+
+/*    public void onLocationChanged(Location location) {
+        if (location != null) {
+            Log.v("Location Changed", location.getLatitude() + " and " + location.getLongitude());
+            mLocationManager.removeUpdates(this);
+        }
+    }
+
+    public void onProviderDisabled(String arg0) {}
+    public void onProviderEnabled(String arg0) {}
+    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {}*/
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -146,11 +178,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         }
                     }
                 });
-            }
+             }
         } catch (SecurityException e) {
             Log.e(TAG, "getDeviceLocation: exception:   " + e.getMessage() );
         }
     }
+
+   /* private void createIntentForDetailsActivity(Location location) {
+        Intent i = new Intent(getApplicationContext(), DetailsActivity.class);
+        i.putExtra("currentLocationLatitude",  location.getLatitude());
+        i.putExtra("currentLocationLongitude", location.getLongitude());
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Log.e(TAG, "createIntentForDetailsActivity; currentLocation " + location);
+    }*/
 
     //Moving the camera to given latitudes
     private void moveCamera(LatLng latLng, float zoom){

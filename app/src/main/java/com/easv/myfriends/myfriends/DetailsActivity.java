@@ -1,23 +1,33 @@
 package com.easv.myfriends.myfriends;
 
+import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.easv.myfriends.myfriends.model.Friend;
 import com.easv.myfriends.myfriends.service.FriendsService;
+import com.easv.myfriends.myfriends.service.MessageService;
 
 import java.util.Date;
 
 public class DetailsActivity extends AppCompatActivity {
 
     //    <------------------- DECLARATIONS ------------------->
+
+    private static final String TAG = "MapActivity";    //Activity's TAG used for Log
+
     FriendsService friendsService;
+    MessageService messageService;
     Friend selectedFriend;
     Integer selectedFriendId;
     Boolean isNewFriend;
+    Location currentLocation;
+    double currentLocationLongitude;
+    double currentLocationLatitude;
 
     private EditText nameEditText; // displaying/updating friend's name
     private EditText addressEditText; // displaying/updating friend's address
@@ -53,8 +63,12 @@ public class DetailsActivity extends AppCompatActivity {
         friendsService = new FriendsService(this);
 
         //    <------------------- RETREIVING EXTRAS  ------------------->
+
         selectedFriendId = getIntent().getIntExtra("friendId", 0);
         isNewFriend = getIntent().getBooleanExtra("isNewFriend", false);
+        //currentLocationLongitude = getIntent().getDoubleExtra("currentLocationLatitude", 0);
+        //currentLocationLatitude = getIntent().getDoubleExtra("currentLocationLongitude", 0);
+
 
         //    <------------------- CREATE AND POPULATE FRIEND OBJECT  ------------------->
         if(!isNewFriend) {
@@ -89,7 +103,13 @@ public class DetailsActivity extends AppCompatActivity {
     public void takePicture(View v) {}
 
     // setting homeAddressLoccation
-    public void setHomeAddressLocation(View v){}
+    public void setHomeAddressLocation(View v){
+       /* Log.d(TAG, "Home location set to: " + currentLocation);
+        currentLocation.setLatitude(currentLocationLatitude);
+        currentLocation.setLongitude(currentLocationLongitude);
+        selectedFriend.setmLocation(currentLocation);
+        messageService.message(getApplicationContext(), "New address set");*/
+    }
 
     // showing homeAddressLocation on a map
     public void showHomeAddressLocation(View v){}
