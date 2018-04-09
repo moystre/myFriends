@@ -1,7 +1,9 @@
 package com.easv.myfriends.myfriends;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
 import com.easv.myfriends.myfriends.model.Friend;
 import com.easv.myfriends.myfriends.service.FriendsService;
 import com.easv.myfriends.myfriends.service.MessageService;
@@ -35,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
     double currentLocationLongitude;
     double currentLocationLatitude;
 
+    private ImageView profilePicture;
     private EditText nameEditText; // displaying/updating friend's name
     private EditText addressEditText; // displaying/updating friend's address
     private EditText phoneEditText; // displaying/updating friend's phoneNumber
@@ -86,6 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         //    <------------------- FINDING EditTexts BY findViewById  ------------------->
 
+        this.profilePicture = findViewById(R.id.friendDetailsPictureEdit);
         this.nameEditText = findViewById(R.id.friendDetailsNameEdit);
         this.addressEditText = findViewById(R.id.friendDetailsAddressEdit);
         this.phoneEditText = findViewById(R.id.friendDetailsPhoneEdit);
@@ -95,6 +101,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         //    <------------------- ASSIGNING TextViews values  ------------------->
 
+        if(selectedFriend.getmPictureString()!=null && selectedFriend.getmPictureString()!="") {
+
+            this.profilePicture.setImageBitmap(BitmapFactory.decodeFile(selectedFriend.getmPictureString()));
+        }
+        Log.d("XXXXXXXXXXXXXXXXXXXX", selectedFriend.getmPictureString());
         this.nameEditText.setText(selectedFriend.getmName());
         this.addressEditText.setText(selectedFriend.getmAddress());
         this.phoneEditText.setText(selectedFriend.getmPhoneNumber());
@@ -102,12 +113,33 @@ public class DetailsActivity extends AppCompatActivity {
         this.birthdayEditText.setText(selectedFriend.getmBirthdayStringDAYMONTH());
         this.websiteEditText.setText(Html.fromHtml(selectedFriend.getmWebsite()));
         this.websiteEditText.setMovementMethod(LinkMovementMethod.getInstance());
+
+        //    <------------------- ASSIGNING ImageView picture  ------------------->
+
+        this.nameEditText.setText(selectedFriend.getmName());
     }
     //    <------------------- onClick METHODS FOR BUTTONS  ------------------->
 
     // taking a new picture/updating previous one
-    public void takePicture(View v) {}
+    public void takePicture(View v) {
+        Intent i = new Intent(getApplicationContext(), CameraActivity.class);
+        startActivityForResult(i, 1);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                String resultPath = data.getStringExtra("imagePath");
+                selectedFriend.setmPicturePath(resultPath);
+                this.profilePicture.setImageBitmap(BitmapFactory.decodeFile(selectedFriend.getmPictureString()));
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result todo
+            }
+        }
+    }
     // setting homeAddressLoccation
     public void setHomeAddressLocation(View v){
        /* Log.d(TAG, "Home location set to: " + currentLocation);
@@ -157,7 +189,6 @@ public class DetailsActivity extends AppCompatActivity {
             selectedFriend.setmEmail(emailEditText.getText().toString().trim());
             //todo set birthday
             selectedFriend.setmWebsite(websiteEditText.getText().toString().trim());
-            //todo set picture path
             friendsService.update(selectedFriend);
         }
         else {
@@ -168,7 +199,7 @@ public class DetailsActivity extends AppCompatActivity {
             selectedFriend.setmEmail(emailEditText.getText().toString().trim());
             //todo set birthday
             selectedFriend.setmWebsite(websiteEditText.getText().toString().trim());
-            //todo set picture path
+            // todo defaultpic
             friendsService.addFriend(selectedFriend);
         }
     }

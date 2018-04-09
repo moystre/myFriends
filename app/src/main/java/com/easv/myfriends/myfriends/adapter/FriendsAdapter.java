@@ -2,6 +2,7 @@ package com.easv.myfriends.myfriends.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -56,7 +57,9 @@ public class FriendsAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.friendslist_row, parent, false);
         }
         Friend friend = getItem(position);
+
         // TODO ((ImageView) view.findViewById(R.id.friendListImageView)).set???  IF IMAGE THEN IMAGE ELSE
+        ((ImageView) view.findViewById(R.id.friendListImageView)).setImageBitmap(BitmapFactory.decodeFile(friend.getmPictureString()));
         // TODO IMAGE PROMPT DEFAULT PICTURE);
         ((TextView) view.findViewById(R.id.friendListName)).setText(friend.getmName());
         ((TextView) view.findViewById(R.id.friendListPhone)).setText(friend.getmPhoneNumber());

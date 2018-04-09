@@ -36,7 +36,7 @@ public class FriendsDbAdapter implements IFriendsDbAdapter {
         contentValues.put(dbSchema.EMAIL, friendToAdd.getmEmail());
         contentValues.put(dbSchema.WEBSITE, friendToAdd.getmWebsite());
         contentValues.put(dbSchema.BIRTHDAY, friendToAdd.getmBirthdayStringDAYMONTH());
-        contentValues.put(dbSchema.PICTURE, friendToAdd.getmName());
+        contentValues.put(dbSchema.PICTURE, friendToAdd.getmPictureString());
 
         long id = db.insert(dbSchema.TABLE_NAME, null, contentValues);
         db.close();
@@ -69,7 +69,7 @@ public class FriendsDbAdapter implements IFriendsDbAdapter {
                 tempFriend.setmEmail(cursor.getString(email_index));
                 tempFriend.setmWebsite(cursor.getString(website_index));
                 // todo think if it should be string or long tempFriend.setmBirthday(cursor.getString(birthday_index));
-                //todo picture
+                tempFriend.setmPicturePath(cursor.getString(picture_index));
                 friendsToReturn.add(tempFriend);
             } while (cursor.moveToNext());
         }
@@ -107,7 +107,7 @@ public class FriendsDbAdapter implements IFriendsDbAdapter {
             friendToReturn.setmEmail(cursor.getString(email_index));
             friendToReturn.setmWebsite(cursor.getString(website_index));
             // todo think if it should be string or long tempFriend.setmBirthday(cursor.getString(birthday_index));
-            //todo picture
+            friendToReturn.setmPicturePath(cursor.getString(picture_index));
             db.close();
             return friendToReturn;
         }
@@ -127,7 +127,7 @@ public class FriendsDbAdapter implements IFriendsDbAdapter {
         contentValues.put(dbSchema.EMAIL, friendToUpdate.getmEmail());
         contentValues.put(dbSchema.WEBSITE, friendToUpdate.getmWebsite());
         contentValues.put(dbSchema.BIRTHDAY, friendToUpdate.getmBirthdayStringDAYMONTH());
-        contentValues.put(dbSchema.PICTURE, friendToUpdate.getmName());
+        contentValues.put(dbSchema.PICTURE, friendToUpdate.getmPictureString());
 
         return db.update(dbSchema.TABLE_NAME, contentValues, dbSchema.ID+"=?",
                 new String[]{Integer.toString(friendToUpdateId)}) > 0 ;
@@ -150,7 +150,7 @@ public class FriendsDbAdapter implements IFriendsDbAdapter {
 
     static class DatabaseHelper extends SQLiteOpenHelper {
 
-        private static final int DATABASE_VERSION = 9;
+        private static final int DATABASE_VERSION = 10;
 
         private static final String DATABASE_NAME = "friends_db";
         private static final String TABLE_NAME = "friends";
